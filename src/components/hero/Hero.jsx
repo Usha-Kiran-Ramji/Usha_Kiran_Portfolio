@@ -92,7 +92,7 @@ const Hero = () => {
               variant="h3"
               fontWeight="bold"
               sx={{
-                background: "linear-gradient(90deg, #3b82f6, #06b6d4)",
+                background: "linear-gradient(90deg, #90A5C7A9, #6BE5FB)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 mb: 2,
@@ -109,6 +109,10 @@ const Hero = () => {
                   "Java Full Stack Developer 🚀",
                   2000,
                   "Building Scalable Web Applications ⚡",
+                  2000,
+                  "C# Developer 🖥️",
+                  2000,
+                  "MVVM< WPF< WinForms",
                   2000,
                 ]}
                 speed={50}
