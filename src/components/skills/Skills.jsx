@@ -1,5 +1,4 @@
-import { Box, Container, Typography, Grid, Paper } from "@mui/material";
-import { motion } from "framer-motion";
+import { Box, Container, Typography, Paper, Grid } from "@mui/material"; // ✅ Grid included
 import {
   SiReact,
   SiRedux,
@@ -15,148 +14,60 @@ import {
   SiPostman,
   SiSwagger,
 } from "react-icons/si";
-import { FaJava, FaCode } from "react-icons/fa";
+import { FaJava } from "react-icons/fa";
 
-/* Floating animation */
-const floating = {
-  animate: {
-    y: [0, -8, 0],
-    transition: {
-      duration: 3,
-      repeat: Infinity,
-      ease: "easeInOut",
-    },
-  },
-};
-
-/* Skills Data */
-const skillsData = [
-  {
-    title: "Frontend",
-    items: [
-      { icon: <SiReact />, label: "React.js" },
-      { icon: <SiRedux />, label: "Redux" },
-      { icon: <SiJavascript />, label: "JavaScript" },
-      { icon: <SiHtml5 />, label: "HTML5" },
-      { icon: <SiCss3 />, label: "CSS3" },
-      { icon: <SiBootstrap />, label: "Bootstrap" },
-    ],
-  },
-  {
-    title: "Backend",
-    items: [
-      { icon: <FaJava />, label: "Java" },
-      { icon: <SiSpringboot />, label: "Spring Boot" },
-      { icon: <FaCode />, label: "REST APIs" },
-    ],
-  },
-  {
-    title: "Database",
-    items: [
-      { icon: <SiPostgresql />, label: "PostgreSQL" },
-      { icon: <SiMysql />, label: "MySQL" },
-    ],
-  },
-  {
-    title: "Tools & Platforms",
-    items: [
-      { icon: <SiGit />, label: "Git" },
-      { icon: <SiGithub />, label: "GitHub" },
-      { icon: <FaCode />, label: "VS Code" },
-      { icon: <SiPostman />, label: "Postman" },
-      { icon: <SiSwagger />, label: "Swagger UI" },
-    ],
-  },
+const skills = [
+  { id: 1, icon: <SiReact />, label: "React.js" },
+  { id: 2, icon: <SiRedux />, label: "Redux" },
+  { id: 3, icon: <SiJavascript />, label: "JavaScript" },
+  { id: 4, icon: <SiHtml5 />, label: "HTML5" },
+  { id: 5, icon: <SiCss3 />, label: "CSS3" },
+  { id: 6, icon: <SiBootstrap />, label: "Bootstrap" },
+  { id: 7, icon: <FaJava />, label: "Java" },
+  { id: 8, icon: <SiSpringboot />, label: "Spring Boot" },
+  { id: 9, icon: <SiPostgresql />, label: "PostgreSQL" },
+  { id: 10, icon: <SiMysql />, label: "MySQL" },
+  { id: 11, icon: <SiGit />, label: "Git" },
+  { id: 12, icon: <SiGithub />, label: "GitHub" },
+  { id: 13, icon: <SiPostman />, label: "Postman" },
+  { id: 14, icon: <SiSwagger />, label: "Swagger" },
 ];
 
 const Skills = () => {
   return (
-    <Box
-      id="skills"
-      sx={{
-        py: 10,
-        backgroundColor: "#f7f9fc",
-      }}
-    >
+    <Box id="skills" sx={{ py: 10, backgroundColor: "#f3f4f6" }}>
       <Container>
-        {/* Heading */}
         <Typography variant="h3" align="center" fontWeight="bold" gutterBottom>
           Skills
         </Typography>
 
         <Typography align="center" color="text.secondary" sx={{ mb: 6 }}>
-          Technologies I use to build scalable and high-performance applications
+          Technologies I use to build modern applications
         </Typography>
 
-        {/* One category per row */}
-        <Grid container spacing={4}>
-          {skillsData.map((category, index) => (
-            <Grid item xs={12} key={index}>
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
+        <Grid container spacing={4} justifyContent="center">
+          {skills.map((skill) => (
+            <Grid item key={skill.id} xs={6} sm={4} md={3}>
+              <Paper
+                elevation={3}
+                sx={{
+                  p: 3,
+                  textAlign: "center",
+                  borderRadius: 3,
+                  height: 140,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  transition: "0.3s",
+                  "&:hover": { transform: "translateY(-5px)" },
+                }}
               >
-                <Paper
-                  elevation={4}
-                  sx={{
-                    p: 4,
-                    borderRadius: 4,
-                    transition: "0.3s",
-                    "&:hover": {
-                      transform: "translateY(-6px)",
-                    },
-                  }}
-                >
-                  {/* Category Title */}
-                  <Typography variant="h5" fontWeight="bold" gutterBottom>
-                    {category.title}
-                  </Typography>
-
-                  {/* Centered Icons Row */}
-                  <Grid
-                    container
-                    spacing={4}
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    {category.items.map((item, i) => (
-                      <Grid item xs={6} sm={4} md={2} key={i}>
-                        <motion.div
-                          variants={floating}
-                          animate="animate"
-                          style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            textAlign: "center",
-                          }}
-                        >
-                          <Box
-                            sx={{
-                              fontSize: "2.3rem",
-                              color: "#1976d2",
-                              mb: 1,
-                              transition: "all 0.3s ease",
-                              "&:hover": {
-                                transform: "scale(1.2)",
-                                color: "#0d47a1",
-                              },
-                            }}
-                          >
-                            {item.icon}
-                          </Box>
-
-                          <Typography variant="body2" color="text.secondary">
-                            {item.label}
-                          </Typography>
-                        </motion.div>
-                      </Grid>
-                    ))}
-                  </Grid>
-                </Paper>
-              </motion.div>
+                <Box sx={{ fontSize: "2.5rem", color: "#2563eb", mb: 1 }}>
+                  {skill.icon}
+                </Box>
+                <Typography>{skill.label}</Typography>
+              </Paper>
             </Grid>
           ))}
         </Grid>

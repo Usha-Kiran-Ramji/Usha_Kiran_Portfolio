@@ -1,13 +1,15 @@
-import { Box, Container, Typography, Button } from "@mui/material";
-import { motion } from "framer-motion";
+// File: src/components/hero/Hero.jsx
 import {
-  SiReact,
-  SiSpringboot,
-  SiPostgresql,
-  SiOpenjdk,
-} from "react-icons/si";
-
-import { floatingAnimation } from "../../animations/motionVariants";
+  Box,
+  Container,
+  Typography,
+  Button,
+} from "@mui/material";
+import { motion } from "framer-motion";
+import { TypeAnimation } from "react-type-animation";
+import { Link as ScrollLink } from "react-scroll";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ProfilePic from "../../assets/profile/Usha_Profile.jpeg"; // Replace with your image
 
 const Hero = () => {
   return (
@@ -15,129 +17,138 @@ const Hero = () => {
       id="home"
       sx={{
         minHeight: "100vh",
-        position: "relative",
         display: "flex",
         alignItems: "center",
-        overflow: "hidden",
-        pt: 10,
-       background: "linear-gradient(135deg, #ffffff, #f0f4ff)",
-color: "#1a1a1a",
-
+        justifyContent: "center",
+        background: "radial-gradient(circle at 20% 20%, #1e293b, #0f172a)",
+        color: "#fff",
+        px: 2,
       }}
     >
-      {/* Floating Icons */}
-      <motion.div
-        variants={floatingAnimation}
-        initial="initial"
-        animate="animate"
-        style={{
-          position: "absolute",
-          top: "20%",
-          left: "10%",
-          fontSize: "3rem",
-          opacity: 1.5,
-        }}
-      >
-        <SiReact />
-      </motion.div>
-
-      <motion.div
-        variants={floatingAnimation}
-        initial="initial"
-        animate="animate"
-        style={{
-          position: "absolute",
-          top: "60%",
-          right: "15%",
-          fontSize: "3rem",
-          opacity: 0.3,
-        }}
-      >
-        <SiSpringboot />
-      </motion.div>
-
-      <motion.div
-        variants={floatingAnimation}
-        initial="initial"
-        animate="animate"
-        style={{
-          position: "absolute",
-          bottom: "20%",
-          left: "20%",
-          fontSize: "3rem",
-          opacity: 0.3,
-        }}
-      >
-        <SiPostgresql />
-      </motion.div>
-
-      <motion.div
-        variants={floatingAnimation}
-        initial="initial"
-        animate="animate"
-        style={{
-          position: "absolute",
-          top: "35%",
-          right: "35%",
-          fontSize: "3rem",
-          opacity: 0.3,
-        }}
-      >
-        <SiOpenjdk />
-      </motion.div>
-
-      {/* Main Content */}
-      <Container>
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+      <Container maxWidth="lg">
+        <Box
+          sx={{
+            display: { xs: "block", md: "flex" },
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 6,
+          }}
         >
-          <Container
-            sx={{
-              textAlign: { xs: "center", md: "left" },
-            }}
+          {/* Profile Picture Section - Left */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, type: "spring", stiffness: 120 }}
+            style={{ position: "relative", display: "flex", justifyContent: "center" }}
+          >
+            {/* Floating + Glow */}
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 3, repeat: Infinity, repeatType: "loop" }}
+              style={{ position: "relative" }}
+            >
+              {/* Glow Effect */}
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: { xs: 200, md: 300 },
+                  height: { xs: 300, md: 300 },
+                  borderRadius: "50%",
+                  background: "radial-gradient(circle, rgba(59,130,246,0.3), transparent 70%)",
+                  filter: "blur(40px)",
+                  zIndex: 0,
+                }}
+              />
+
+              {/* Avatar */}
+              <Box
+                component="img"
+                src={ProfilePic}
+                alt="Usha Kiran"
+                sx={{
+                  width: { xs: 180, md: 280 },
+                  height: { xs: 220, md: 280 },
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                  boxShadow: "0 0 35px rgba(59, 130, 246, 0.4)",
+                  position: "relative",
+                  zIndex: 1,
+                }}
+              />
+            </motion.div>
+          </motion.div>
+
+          {/* Text Section - Right */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            style={{ maxWidth: 600, textAlign: { xs: "center", md: "left" } }}
           >
             <Typography
-              variant="h2"
-              gutterBottom
+              variant="h3"
+              fontWeight="bold"
               sx={{
-                fontWeight: "bold",
-                fontSize: {
-                  xs: "2.2rem",
-                  sm: "2.8rem",
-                  md: "3.5rem",
-                },
+                background: "linear-gradient(90deg, #3b82f6, #06b6d4)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                mb: 2,
               }}
             >
-              Hi, I’m <span style={{ color: "#90caf9" }}>Usha Kiran</span>
+              Hi, I'm Usha Kiran 👋
             </Typography>
 
-            <Typography
-              sx={{
-                fontSize: {
-                  xs: "1.1rem",
-                  sm: "1.3rem",
-                  md: "1.5rem",
-                },
-                color: "rgba(255,255,255,0.8)",
-              }}
-            >
-              Java Full Stack Developer
-              <br />
-              Spring Boot • React • PostgreSQL
+            <Typography variant="h5" sx={{ mb: 3, minHeight: "60px" }}>
+              <TypeAnimation
+                sequence={[
+                  "React JS Developer 💻",
+                  2000,
+                  "Java Full Stack Developer 🚀",
+                  2000,
+                  "Building Scalable Web Applications ⚡",
+                  2000,
+                ]}
+                speed={50}
+                repeat={Infinity}
+              />
             </Typography>
 
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              sx={{ mt: 4, px: 4, py: 1.5 }}
+            <Typography sx={{ mb: 4, color: "#cbd5e1" }}>
+              Passionate about creating high-performance,
+              scalable and user-friendly applications using
+              modern technologies.
+            </Typography>
+
+            {/* View Projects Button */}
+            <ScrollLink
+              to="projects"
+              smooth={true}
+              duration={600}
+              offset={-70}
             >
-              View Projects
-            </Button>
-          </Container>
-        </motion.div>
+              <Button
+                variant="contained"
+                endIcon={<ArrowForwardIcon />}
+                sx={{
+                  px: 5,
+                  py: 1.5,
+                  borderRadius: 3,
+                  background: "linear-gradient(90deg,#2563eb,#06b6d4)",
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                  "&:hover": {
+                    background: "linear-gradient(90deg,#1e40af,#06b6d4)",
+                  },
+                }}
+              >
+                View Projects
+              </Button>
+            </ScrollLink>
+          </motion.div>
+        </Box>
       </Container>
     </Box>
   );
