@@ -112,7 +112,7 @@ const Hero = () => {
                   2000,
                   "C# Developer 🖥️",
                   2000,
-                  "MVVM< WPF< WinForms",
+                  "MVVM,  WPF, WinForms",
                   2000,
                 ]}
                 speed={50}
